@@ -24,23 +24,26 @@ bool Passenger::getMethod() {
 }
 void Passenger::input() {
 	string temp; bool flag;
-	cout << "** Ввод данных о пассажире: " << this->getName() << " **" << endl;
+	cout << "** Entry the data of Passenger: " << this->getName() << " **" << endl;
 	do {
-		cout << "Введите способ оплаты (0 - Наличные, 1 - Банковская карта): ";
+		cout << "Payment method (0 - Cash, 1 - Credit card): ";
 		cin >> temp;
 		flag = Checking::boolCheck(temp);
-		if (!flag) cout << "Попробуйте ещё раз. ";
+		if (!flag) cout << "Please try again.. ";
 	} while (!flag);
 	this->payment_method = stoi(temp);
-	cout << "Данные успешно введены!" << endl << endl;
+	cout << "The data are entered successfully!" << endl << endl;
 }
 void Passenger::output() {
-	cout << "Данные о пассажире:" << endl << "-Имя: " << this->getName() << endl;
-	cout << "-Баланс: " << this->getBalance() << endl << "-Способ оплаты: ";
-	if (this->getMethod())
-		cout << "Банковская карта" << endl << endl;
+	if ((this->getName()).empty())
+		cout << "The Passenger data are not available!" << endl;
 	else
-		cout << "Наличные" << endl << endl;
+	cout << "Passenger data:" << endl << "- Name: " << this->getName() << endl;
+	cout << "- Balance: " << this->getBalance() << endl << "- Payment method: ";
+	if (this->getMethod())
+		cout << "Credit card" << endl << endl;
+	else
+		cout << "Cash" << endl << endl;
 }
 void Passenger::takePayment(int payment) {
 	int old_balance = this->getBalance();

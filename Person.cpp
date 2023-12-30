@@ -39,25 +39,25 @@ int Person::getBalance() {
 }
 void Person::input() {
 	string temp; bool flag;
-	cout << "** Ввод данных человека **" << endl;
+	cout << "** Person data entry **" << endl;
 	do {
-		cout << "Введите имя: ";
+		cout << "Name: ";
 		cin >> this->name;
 		flag = Checking::nameCheck(this->name);
-		if (!flag) cout << "Попробуйте ещё раз. ";
+		if (!flag) cout << "Please try again.. ";
 	} while (!flag);
 	do {
-		cout << "Введите баланс: ";
+		cout << "Balance: ";
 		cin >> temp;
 		flag = Checking::intCheck(temp);
-		if (!flag) cout << "Попробуйте ещё раз. ";
+		if (!flag) cout << "Please try again.. ";
 	} while (!flag);
 	this->balance = stoi(temp);
-	cout << "Данные успешно введены!" << endl << endl;
+	cout << "The data are entered successfully!" << endl << endl;
 }
 void Person::output() {
 	if (this->name.empty())
-		cout << "Данные о человеке отсутствуют!" << endl;
+		cout << "The Person data are not available!" << endl;
 	else
-		cout << "Данные о человеке:" << endl << "-Имя: " << this->name << endl << "-Баланс: " << this->balance << endl;
+		cout << "Person data:" << endl << "- Name: " << this->name << endl << "- Balance: " << this->balance << endl;
 }

@@ -6,7 +6,7 @@ using namespace std;
 
 bool Checking::nameCheck(string name) {
     bool f = 1;
-	f = regex_match(name, regex("^[A-Za-zР-пр-џ]+$"));
+	f = regex_match(name, regex("^[A-Za-z]+$"));
 	return f;
 }
 bool Checking::intCheck(string balance) {

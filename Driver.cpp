@@ -21,7 +21,7 @@ Driver::Driver(string name, int balance, int experience, int orderAmount) : Pers
 	this->orderAmount = orderAmount;
 }
 
-// Дружественные функции
+// friend functions
 void setExperience(int experience, Driver& driver) {
 	driver.experience = experience;
 }
@@ -44,41 +44,45 @@ void increaseOrderAmount(Driver& driver) {
 }
 void input(Driver& driver) {
 	string temp; bool flag;
-	cout << "** Ввод данных водителя: " << driver.getName() << " **" << endl;
+	cout << "** Entry the data of Driver: " << driver.getName() << " **" << endl;
 	do {
-		cout << "Введите количество лет опыта: ";
+		cout << "Years of experience: ";
 		cin >> temp;
 		flag = Checking::intCheck(temp);
-		if (!flag) cout << "Попробуйте ещё раз. ";
+		if (!flag) cout << "Please try again.. ";
 	} while (!flag);
 	driver.experience = stoi(temp);
 	do {
-		cout << "Введите количество выполненных заказов: ";
+		cout << "Amount of completed orders: ";
 		cin >> temp;
 		flag = Checking::intCheck(temp);
-		if (!flag) cout << "Попробуйте ещё раз. ";
+		if (!flag) cout << "Please try again.. ";
 	} while (!flag);
 	driver.orderAmount = stoi(temp);
-	cout << "Данные успешно введены!" << endl << endl;
+	cout << "The data are entered successfully!" << endl << endl;
 }
 void output(Driver& driver) {
-	cout << "Данные о водителе:" << endl << "-Имя: " << driver.getName() << endl;
-	cout << "-Баланс: " << driver.getBalance() << endl;
-	cout << "-Количество лет опыта: " << getExperience(driver) << endl;
-	cout << "-Количество выполненных заказов: " << getOrderAmount(driver) << endl << endl;
+	if ((driver.getName()).empty())
+		cout << "The Driver data are not available!" << endl;
+	else {
+		cout << "Driver data:" << endl << "- Name: " << driver.getName() << endl;
+		cout << "- Balance: " << driver.getBalance() << endl;
+		cout << "- Years of experience: " << getExperience(driver) << endl;
+		cout << "- Amount of completed orders: " << getOrderAmount(driver) << endl << endl;
+	}
 }
 
-// Перегрузка операторов
-Driver operator + (Driver& driver1, Driver& driver2) // Оператор +
+// operator overload
+Driver operator + (Driver& driver1, Driver& driver2) // operator +
 {
 	return Driver(driver1.getBalance() + driver2.getBalance());
 }
-Driver& operator++ (Driver& driver) // Префиксный оператор ++
+Driver& operator++ (Driver& driver) // prefix operator ++
 {
 	setExperience(getExperience(driver) + 1, driver);
 	return driver;
 }
-Driver operator++ (Driver& driver, int) // Постфиксный оператор ++
+Driver operator++ (Driver& driver, int) // postfix operator ++
 {
 	Driver copy(driver);
 	++driver;

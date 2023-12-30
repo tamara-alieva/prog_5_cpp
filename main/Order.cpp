@@ -6,39 +6,39 @@
 #include <string>
 using namespace std;
 
-int min_payment = 200; // инициализация статического поля
+int min_payment = 200; // static member initialization
 
 void increasePayment();
 int calculatePayment(bool rate, bool congestion);
 
 Order::Order(bool rate, bool congestion, Passenger passenger, Driver driver, Car car) {
-	cout << "ЗАКАЗ" << endl;
+	cout << "ORDER" << endl;
 	int payment;
 	payment = calculatePayment(rate, congestion);
 
 	this->status = 0;
 	if (passenger.getBalance() < payment) {
-		cout << "На балансе пассажира недостаточно средств! (Сумма поездки: " << payment << ")" << endl;
+		cout << "The Passenger balance is insufficient! (Cost of the trip: " << payment << ")" << endl;
 	}
 	else {
 		if (car.fuel.getCapacity() == false) {
-			cout << "У выбранной машины не заполнен топливный бак!" << endl;
+			cout << "The car tank is not filled!" << endl;
 		}
 		else {
-			if (rate) { // Класс поездки - Комфорт
+			if (rate) { // Comfort tariff
 				if (getExperience(driver) < 10 || getOrderAmount(driver) < 30) {
-					cout << "У выбранного водителя недостаточно лет опыта или завершённых заказов для выполнения заказа уровня Комфорт!";
+					cout << "The Driver doesn\'t have enough experience years or completed orders for the Comfort ride!";
 				}
 				else {
 					if (car.getRate() == false) {
-						cout << "Выбранный автомобиль недостаточно высокого класса для выполнения заказа уровня Комфорт!" << endl;
+						cout << "The car rate is not high enough for the Comfort ride!" << endl;
 					}
-					else { // Класс поездки - Эконом
+					else { // Economy tariff
 						this->status = 1;
 					}
 				}
 			}
-			else { // Класс поездки - Эконом
+			else { // Economy tariff
 				this->status = 1;
 			}
 		}
@@ -48,13 +48,13 @@ Order::Order(bool rate, bool congestion, Passenger passenger, Driver driver, Car
 		givePayment(payment, driver);
 		increaseOrderAmount(driver);
 		car.fuel.empty();
-		cout << "Заказ выполнен успешно! Информация на момент завершения заказа:" << endl << endl;
+		cout << "Order is completed successfully! Details:" << endl << endl;
 		string buffer;
 		string* rate_str = Order::rateString(rate, &buffer);
-		cout << "Класс поездки: " << *rate_str << endl;
+		cout << "Tariff: " << *rate_str << endl;
 		string congestion_str = Order::congestionString(congestion, buffer);
-		cout << "Загруженность дорог: " << congestion_str << endl;
-		cout << "Стоимость поездки: " << payment << endl << endl;
+		cout << "Road congestion: " << congestion_str << endl;
+		cout << "Cost of the trip: " << payment << endl << endl;
 		passenger.output();
 		driver.output();
 		car.output();
@@ -69,26 +69,26 @@ int calculatePayment(bool rate, bool congestion) {
 	int price;
 	price = min_payment;
 	if (rate) {
-		price += 300; // Класс поездки - Комфорт
+		price += 300; // Comfort tariff
 	}
 	if (congestion) {
-		price *= 2; // Если дороги загруженны
+		price *= 2; // if roads are loaded
 	}
 	return price;
 }
 
 string* Order::rateString(bool rate, string* result) {
 	if (rate)
-		*result = "Комфорт";
+		*result = "Comfort";
 	else
-		*result = "Эконом";
+		*result = "Economy";
 	return result;
 }
 
 string& Order::congestionString(bool congestion, string& result) {
 	if (congestion)
-		result = "Есть";
+		result = "Yes";
 	else
-		result = "Нет";
+		result = "No";
 	return result;
 }

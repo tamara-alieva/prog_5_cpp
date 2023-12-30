@@ -18,22 +18,22 @@ bool Fuel::getCapacity() {
 }
 void Fuel::input() {
 	string temp; bool flag;
-	cout << "** Ввод данных о топливном баке **" << endl;
+	cout << "** Fuel data entry **" << endl;
 	do {
-		cout << "Введите заполенность бака (0 - Пустой, 1 - Полный): ";
+		cout << "Capacity (0 - Empty, 1 - Full): ";
 		cin >> temp;
 		flag = Checking::boolCheck(temp);
-		if (!flag) cout << "Попробуйте ещё раз. ";
+		if (!flag) cout << "Please try again.. ";
 	} while (!flag);
 	this->capacity = stoi(temp);
-	cout << "Данные успешно введены!" << endl << endl;
+	cout << "The data are entered successfully!" << endl << endl;
 }
 void Fuel::output() {
-	cout << "Данные о топливном баке:" << endl << "-Заполненность: ";
+	cout << "Fuel data:" << endl << "- Capacity: ";
 	if (this->getCapacity())
-		cout << "Полный" << endl << endl;
+		cout << "Full" << endl << endl;
 	else
-		cout << "Пустой" << endl << endl;
+		cout << "Empty" << endl << endl;
 }
 void Fuel::fill() {
 	this->capacity = 1;

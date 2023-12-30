@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-int Car::numberOfCars = 0; // инициализация статического поля
+int Car::numberOfCars = 0; // static member initialization
 
 Car::Car() {
 	this->fuel = new Fuel();
@@ -48,30 +48,30 @@ int Car::getNumberOfCars() {
 }
 void Car::input() {
 	string temp; bool flag;
-	cout << "** Ввод данных автомобиля **" << endl;
+	cout << "** Car data entry **" << endl;
 	do {
-		cout << "Введите марку: ";
+		cout << "Brand: ";
 		cin >> this->brand;
 		flag = Checking::nameCheck(this->brand);
-		if (!flag) cout << "Попробуйте ещё раз. ";
+		if (!flag) cout << "Please try again.. ";
 	} while (!flag);
 	do {
-		cout << "Введите класс автомобиля (0 - Эконом, 1 - Комфорт): ";
+		cout << "Rate (0 - Economy, 1 - Comfort): ";
 		cin >> temp;
 		flag = Checking::boolCheck(temp);
-		if (!flag) cout << "Попробуйте ещё раз. ";
+		if (!flag) cout << "Please try again.. ";
 	} while (!flag);
 	this->rate = stoi(temp);
-	cout << "Данные успешно введены!" << endl << endl;
+	cout << "The data are entered successfully!" << endl << endl;
 }
 void Car::output() {
 	if (this->brand.empty())
-		cout << "Данные об автомобиле отсутствуют!" << endl;
+		cout << "The car data are not available!" << endl;
 	else {
-		cout << "Данные об автомобиле:" << endl << "-Марка: " << this->brand << endl << "-Класс: ";
+		cout << "Car data:" << endl << "- Brand: " << this->brand << endl << "- Rate: ";
 		if (this->rate)
-			cout << "Комфорт" << endl;
+			cout << "Comfort" << endl;
 		else
-			cout << "Эконом" << endl;
+			cout << "Economy" << endl;
 	}
 }
