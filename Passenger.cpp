@@ -43,7 +43,8 @@ void Passenger::output() {
 		else
 			cout << "Cash" << endl << endl;
 	}
-	throw string{"The Passenger name is missing!"};
+	else
+		throw string{"The Passenger name is missing!"};
 }
 void Passenger::takePayment(int payment) {
 	int old_balance = this->getBalance();

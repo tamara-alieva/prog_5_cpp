@@ -68,7 +68,8 @@ void output(Driver& driver) {
 		cout << "- Years of experience: " << getExperience(driver) << endl;
 		cout << "- Amount of completed orders: " << getOrderAmount(driver) << endl << endl;
 	}
-	throw string{"The Driver name is missing!"};
+	else
+		throw string{"The Driver name is missing!"};
 }
 
 // operator overload

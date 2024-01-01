@@ -58,5 +58,6 @@ void Person::input() {
 void Person::output() {
 	if (!(this->name.empty()))
 		cout << "Person data:" << endl << "- Name: " << this->name << endl << "- Balance: " << this->balance << endl;
-	throw string{"The Person name is missing!"};
+	else
+		throw string{"The Person name is missing!"};
 }

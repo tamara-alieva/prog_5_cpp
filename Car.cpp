@@ -72,5 +72,6 @@ void Car::output() {
 		else
 			cout << "Economy" << endl;
 	}
-	throw string{"The Car brand is missing!"};
+	else
+		throw string{"The Car brand is missing!"};
 }
