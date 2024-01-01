@@ -50,6 +50,14 @@ int main() {
     catch (string error_message) {
         cout << error_message << endl << endl;
     }
+    cout << endl;
+
+    int i;
+    Person array1[2];
+    for (i = 0; i < 2; i++)
+        array1[i].input();
+    for (i = 0; i < 2; i++)
+        array1[i].output();
 
     return 0;
 }
