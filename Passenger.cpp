@@ -4,10 +4,10 @@
 #include <string>
 using namespace std;
 
-Passenger::Passenger() : Person() {
+Passenger::Passenger() : Person(0) {
 	this->payment_method = 0;
 }
-Passenger::Passenger(string name) : Person(name) {
+Passenger::Passenger(string name) : Person(name, 0) {
 	this->payment_method = 0;
 }
 Passenger::Passenger(int balance) : Person(balance) {
@@ -35,15 +35,15 @@ void Passenger::input() {
 	cout << "The data are entered successfully!" << endl << endl;
 }
 void Passenger::output() {
-	if ((this->getName()).empty())
-		cout << "The Passenger data are not available!" << endl;
-	else
-	cout << "Passenger data:" << endl << "- Name: " << this->getName() << endl;
-	cout << "- Balance: " << this->getBalance() << endl << "- Payment method: ";
-	if (this->getMethod())
-		cout << "Credit card" << endl << endl;
-	else
-		cout << "Cash" << endl << endl;
+	if (!((this->getName()).empty())) {
+		cout << "Passenger data:" << endl << "- Name: " << this->getName() << endl;
+		cout << "- Balance: " << this->getBalance() << endl << "- Payment method: ";
+		if (this->getMethod())
+			cout << "Credit card" << endl << endl;
+		else
+			cout << "Cash" << endl << endl;
+	}
+	throw string{"The Passenger name is missing!"};
 }
 void Passenger::takePayment(int payment) {
 	int old_balance = this->getBalance();

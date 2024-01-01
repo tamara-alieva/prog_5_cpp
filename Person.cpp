@@ -56,8 +56,7 @@ void Person::input() {
 	cout << "The data are entered successfully!" << endl << endl;
 }
 void Person::output() {
-	if (this->name.empty())
-		cout << "The Person data are not available!" << endl;
-	else
+	if (!(this->name.empty()))
 		cout << "Person data:" << endl << "- Name: " << this->name << endl << "- Balance: " << this->balance << endl;
+	throw string{"The Person name is missing!"};
 }

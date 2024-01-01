@@ -65,13 +65,12 @@ void Car::input() {
 	cout << "The data are entered successfully!" << endl << endl;
 }
 void Car::output() {
-	if (this->brand.empty())
-		cout << "The car data are not available!" << endl;
-	else {
+	if (!(this->brand.empty())) {
 		cout << "Car data:" << endl << "- Brand: " << this->brand << endl << "- Rate: ";
 		if (this->rate)
 			cout << "Comfort" << endl;
 		else
 			cout << "Economy" << endl;
 	}
+	throw string{"The Car brand is missing!"};
 }

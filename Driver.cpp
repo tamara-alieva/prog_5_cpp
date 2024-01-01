@@ -4,11 +4,11 @@
 #include <string>
 using namespace std;
 
-Driver::Driver() : Person() {
+Driver::Driver() : Person(0) {
 	this->experience = 0;
 	this->orderAmount = 0;
 }
-Driver::Driver(string name) : Person(name) {
+Driver::Driver(string name) : Person(name, 0) {
 	this->experience = 0;
 	this->orderAmount = 0;
 }
@@ -62,14 +62,13 @@ void input(Driver& driver) {
 	cout << "The data are entered successfully!" << endl << endl;
 }
 void output(Driver& driver) {
-	if ((driver.getName()).empty())
-		cout << "The Driver data are not available!" << endl;
-	else {
+	if (!((driver.getName()).empty())) {
 		cout << "Driver data:" << endl << "- Name: " << driver.getName() << endl;
 		cout << "- Balance: " << driver.getBalance() << endl;
 		cout << "- Years of experience: " << getExperience(driver) << endl;
 		cout << "- Amount of completed orders: " << getOrderAmount(driver) << endl << endl;
 	}
+	throw string{"The Driver name is missing!"};
 }
 
 // operator overload
